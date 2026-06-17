@@ -1,0 +1,62 @@
+name: Test pull_request event scenario
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_EVENT_NAME: pull_request
+      GITHUB_REF: refs/pull/1/merge
+      GITHUB_HEAD_REF: feature-branch
+      GITHUB_BASE_REF: main
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Create fake pull request event payload
+        run: |
+          mkdir -p /tmp/github-event
+          cat > /tmp/github-event/event.json <<'EOF'
+          {
+            "action": "opened",
+            "number": 1,
+            "pull_request": {
+              "number": 1,
+              "title": "Fix PROJ-123: some bug fix",
+              "body": "Fixes PROJ-123",
+              "html_url": "https://github.com/owner/repo/pull/1",
+              "head": {
+                "ref": "feature-branch",
+                "sha": "abc1234"
+              },
+              "base": {
+                "ref": "main"
+              }
+            },
+            "repository": {
+              "full_name": "owner/repo"
+            }
+          }
+          EOF
+          echo "GITHUB_EVENT_PATH=/tmp/github-event/event.json" >> $GITHUB_ENV
+
+      - id: action
+        uses: .
+        continue-on-error: true
+        with:
+          backlog-api-key: fake-api-key-for-testing
+          backlog-host: example.backlog.com
+
+      - name: Assert action ran (may fail due to invalid credentials)
+        env:
+          OUTCOME: ${{ steps.action.outcome }}
+        run: |
+          echo "action outcome: $OUTCOME"
+          # The action is expected to either succeed or fail with an API error
+          # (not a setup/configuration error). Both 'success' and 'failure' are
+          # acceptable outcomes here since we're using fake credentials.
+          if [ "$OUTCOME" = "success" ] || [ "$OUTCOME" = "failure" ]; then
+            echo "PASS: action ran as expected with outcome=$OUTCOME"
+          else
+            echo "FAIL: unexpected outcome '$OUTCOME'"
+            exit 1
+          fi

@@ -14,6 +14,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 | v2.2.0 | [`v2.2.0`](https://github.com/chainguard-actions/toshimaru-backlog-pr-link-action/tree/v2.2.0) | [`d4a6ed9`](https://github.com/toshimaru/backlog-pr-link-action/commit/d4a6ed99a6e96bcedebabe37be2be6ec5caf96e0) |
 | v2.2.1 | [`v2.2.1`](https://github.com/chainguard-actions/toshimaru-backlog-pr-link-action/tree/v2.2.1) | [`233004f`](https://github.com/toshimaru/backlog-pr-link-action/commit/233004fb041aff49b197e043d22a9248b42c7f60) |
 | v2.3.0 | [`v2.3.0`](https://github.com/chainguard-actions/toshimaru-backlog-pr-link-action/tree/v2.3.0) | [`8d2b59a`](https://github.com/toshimaru/backlog-pr-link-action/commit/8d2b59a900a5b5be2447e71d7b492dc9b3813360) |
+| v2.4.0 | [`v2.4.0`](https://github.com/chainguard-actions/toshimaru-backlog-pr-link-action/tree/v2.4.0) | [`e2f97b8`](https://github.com/toshimaru/backlog-pr-link-action/commit/e2f97b8e0b230d35fa3dc82dfe7fdcdff70d480f) |
 
 ## Privacy
 

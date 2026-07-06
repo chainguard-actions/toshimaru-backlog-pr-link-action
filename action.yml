@@ -1,0 +1,17 @@
+name: 'Backlog Pull Request Link Action'
+description: 'Link the Pull Request to Backlog issue.'
+author: 'toshimaru'
+inputs:
+  backlog-api-key:
+    description: 'API key for Backlog'
+    required: true
+  backlog-host:
+    description: 'Backlog hostname (e.g. your-org.backlog.com")'
+    required: true
+runs:
+  pre: chainguard-phonehome.js
+  using: 'node24'
+  main: 'dist/index.js'
+branding:
+  icon: 'link-2'
+  color: 'green'

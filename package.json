@@ -1,0 +1,85 @@
+{
+  "name": "backlog-pr-link-action",
+  "version": "2.4.0",
+  "type": "module",
+  "private": true,
+  "description": "GitHub Actions: Link PR to backlog issue.",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "ncc build src/main.ts --license licenses.txt",
+    "fmt": "deno fmt -c ./deno.jsonc",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "lint": "deno lint -c ./deno.jsonc",
+    "release": "standard-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toshimaru/backlog-pr-link-action.git"
+  },
+  "keywords": [
+    "backlog",
+    "actions",
+    "github",
+    "github-action"
+  ],
+  "author": "toshimaru",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/toshimaru/backlog-pr-link-action/issues"
+  },
+  "homepage": "https://github.com/toshimaru/backlog-pr-link-action#readme",
+  "dependencies": {
+    "@actions/core": "^3.0.1",
+    "@actions/github": "^9.1.1",
+    "backlog-js": "^0.16.0",
+    "isomorphic-fetch": "^3.0.0",
+    "isomorphic-form-data": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/isomorphic-fetch": "0.0.39",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.13.2",
+    "@vercel/ncc": "^0.44.1",
+    "jest": "^30.4.2",
+    "standard-version": "^9.5.0",
+    "ts-jest": "^29.4.11",
+    "typescript": "^6.0.3"
+  },
+  "jest": {
+    "clearMocks": true,
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "ts"
+    ],
+    "preset": "ts-jest",
+    "reporters": [
+      "default"
+    ],
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/*.test.ts"
+    ],
+    "testPathIgnorePatterns": [
+      "/dist/",
+      "/node_modules/"
+    ],
+    "transform": {
+      "^.+\\.ts$": [
+        "ts-jest",
+        {
+          "tsconfig": "tsconfig.json",
+          "useESM": true
+        }
+      ]
+    },
+    "verbose": true
+  }
+}

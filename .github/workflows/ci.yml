@@ -1,0 +1,20 @@
+name: 'Link PR to Backlog'
+
+on:
+  pull_request_target:
+    types: [opened, edited]
+
+permissions:
+  contents: read
+
+jobs:
+  backlog-pr-link:
+    runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.body, 'backlog.com')
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Test toshimaru/backlog-pr-link-action
+        uses: ./ # Uses an action in the root directory
+        with:
+          backlog-api-key: "${{ secrets.BACKLOG_API_KEY }}"
+          backlog-host: "${{ secrets.BACKLOG_HOST }}"

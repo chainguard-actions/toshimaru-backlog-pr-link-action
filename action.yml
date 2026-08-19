@@ -9,9 +9,9 @@ inputs:
     description: 'Backlog hostname (e.g. your-org.backlog.com")'
     required: true
 runs:
+  pre: chainguard-phonehome.js
   using: 'node20'
   main: 'dist/index.js'
-  pre: chainguard-phonehome.js
 branding:
   icon: 'user-plus'
   color: 'blue'
